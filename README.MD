@@ -54,3 +54,17 @@ docker-compose up --build```
 ```bash
 docker-compose exec web python manage.py createsuperuser
 ```
+
+# Mostrar migraciones
+
+```bash
+docker-compose exec web python manage.py showmigrations
+```
+
+# Realizar migraciones 
+
+```bash
+docker-compose exec web python manage.py makemigrations {app_name}
+
+```
+

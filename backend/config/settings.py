@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
     # Propias
     'users',
+    'schedule'
 ]
 
 # === MIDDLEWARE ===
