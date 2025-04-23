@@ -22,3 +22,4 @@ class ScheduleAdmin(admin.ModelAdmin):
     list_display = ('id', 'teacher', 'student', 'start_time', 'end_time')
     list_filter = ('teacher', 'student', 'start_time')
     search_fields = ('teacher__name', 'student__name')
+

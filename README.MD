@@ -44,10 +44,10 @@ docker-compose up
 
 Desde la raíz del proyecto (schedule/):
 
-````bash
+```bash
 docker-compose down --volumes
-docker-compose up --build```
-````
+docker-compose up --build
+```
 
 # Crear un superusuario
 

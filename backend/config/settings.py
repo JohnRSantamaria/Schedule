@@ -46,6 +46,7 @@ MIDDLEWARE = [
     'axes.middleware.AxesMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'config.middleware.GlobalExceptionMiddleware'  # Lo más abajo posible
 ]
 
 # === URLs y WSGI ===
@@ -113,7 +114,9 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_RATES": {
         "anon": "100/minute",
         "user": "100/minute"
-    }
+    },
+    "EXCEPTION_HANDLER": "config.exceptions.custom_exception_handler",
+    
 }
 
 # === JWT CONFIG ===
@@ -132,10 +135,15 @@ AXES_COOLOFF_TIME = timedelta(minutes=15)  # Tiempo de bloqueo
 AXES_LOCKOUT_CALLABLE = None  
 
 # Recomendado para trabajar bien con JWT
-AXES_ONLY_USER_FAILURES = False # Esto hará que también se bloqueen por IP, no solo por usuario válido.
+# AXES_ONLY_USER_FAILURES = False # Esto hará que también se bloqueen por IP, no solo por usuario válido.
 AXES_USERNAME_FORM_FIELD = "username"
 AXES_RESET_ON_SUCCESS = True  # Limpia intentos fallidos al hacer login exitoso
 
+
+AUTHENTICATION_BACKENDS = (
+    'axes.backends.AxesStandaloneBackend',  # Usa el nuevo backend de Axes
+    'django.contrib.auth.backends.ModelBackend',  # Mantén el backend por defecto de Django
+)
 # === SECURITY SETTINGS (solo en producción) ===
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
