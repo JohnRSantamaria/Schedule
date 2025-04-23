@@ -48,3 +48,9 @@ Desde la raíz del proyecto (schedule/):
 docker-compose down --volumes
 docker-compose up --build```
 ````
+
+# Crear un superusuario
+
+```bash
+docker-compose exec web python manage.py createsuperuser
+```
