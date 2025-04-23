@@ -1,0 +1,9 @@
+services:
+    web:
+        build: .
+        container_name: django_auth
+        restart: always
+        env_file:
+            - .env
+        ports:
+            - '8000:8000'
