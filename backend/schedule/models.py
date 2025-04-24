@@ -10,6 +10,7 @@ class Aptitude(models.Model):
 class Teacher(models.Model): 
     name = models.CharField(max_length=100)
     aptitudes = models.ManyToManyField(Aptitude, related_name='teachers')
+    
 
     def __str__(self): 
         return self.name    
